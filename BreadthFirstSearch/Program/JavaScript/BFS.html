@@ -1,0 +1,76 @@
+<html>
+<body>    
+<script>
+
+    function insertVertex(vertex) {
+        vertices.push(vertex)
+    }	
+
+    function constructAdjacencyList(vtx, adjcVertex) {
+        var vtxIndex = vertices.indexOf(vtx)
+        adjacencyList.push([])
+        adjacencyList[vtxIndex].push(adjcVertex)
+    }	
+
+    function breadthFirstSearch(source) {
+        var queue = []
+        var sourceIndex = vertices.indexOf(source)
+        visited[sourceIndex] = true
+        queue.push(sourceIndex)
+
+        while (queue.length != 0) {
+            sourceIndex = queue.shift()
+            for (iter of adjacencyList[sourceIndex]) {
+                var str = iter
+                let i = vertices.indexOf(str)
+                if (visited[i] == false) {
+                    visited[i] = true
+                    level[i] = level[sourceIndex] + 1
+                    queue.push(i)
+                }
+            }		
+            document.write(vertices[sourceIndex]," of level ",level[sourceIndex], " --> ")
+        }	
+        document.write("</br>")
+    }	
+
+    const V = 5
+    var visited = new Array(V).fill(false)
+    var level = new Array(V).fill(0)
+    var adjacencyList = [[]]
+    var vertices = []
+
+    // Insert Vertices
+
+    insertVertex("a")
+    insertVertex("b")
+    insertVertex("c")
+    insertVertex("d")
+    insertVertex("e")
+
+    // Construct Adjacency List
+
+    constructAdjacencyList("a", "b")
+    constructAdjacencyList("a", "c")
+    constructAdjacencyList("a", "d")
+
+    constructAdjacencyList("b", "a")
+    constructAdjacencyList("b" ,"e")
+
+    constructAdjacencyList("c", "a")
+    constructAdjacencyList("c", "d")
+    constructAdjacencyList("c", "e")
+
+    constructAdjacencyList("d", "a")
+    constructAdjacencyList("d" ,"c")
+    constructAdjacencyList("d", "e")
+
+    constructAdjacencyList("e", "b")
+    constructAdjacencyList("e", "c")
+    constructAdjacencyList("e", "d")
+
+    breadthFirstSearch("c")
+
+</script>
+</body>
+</html>
