@@ -1,5 +1,5 @@
 ﻿using Graphs;
-using System.Runtime.CompilerServices;
+
 //добавляем вершины
 
 var graph = new Graph();
